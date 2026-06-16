@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Expense Tracker App">
+    <meta property="og:description" content="Aplikasi pencatat pengeluaran harian dengan fitur filter dan visualisasi chart.">
+    <meta property="og:image" content="https://files.catbox.moe/w7ac66.png">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="expense.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="tracker.js" defer></script>
+</head>
+<body>
+    <nav>
+        <a href="#" id="nav-main" class="active"  onclick="switchSection('main')">main</a>
+        <a href="#" id="nav-history" onclick="switchSection('history')">history pengeluaran</a>
+        <a href="#" id="nav-about" onclick="switchSection('about')">tentang</a>
+    </nav>
+
+    <div class="container">
+        <section id="main">
+            <h2>tambah pengeluaran</h2>
+            <form id="expense-form">
+                <div class="form-group">
+                    <label for="expense-name">tambahkah pengeluaran</label>
+                    <input type="text" id="expense-name" required placeholder="masukan pengeluaran anda. contoh:nasi goreng atau rendang gitu">
+                </div>
+                <div class="form-group">
+                    <label for="expense-amount">jumlah (RP)</label>
+                    <input type="number" id="expense-amount" required placeholder="masukan nominalnya kayak gini: 12000">
+                </div>
+                <div class="form-group">
+                    <label for="expense-category">kategori</label>
+                    <select id="expense-category">
+                        <option value="makanan">makanan</option>
+                        <option value="hiburan">hiburan</option>
+                        <option value="transportasi">transportasi</option>
+                        <option value="lainnya">lainnya</option>
+                    </select>
+                </div>
+                <button type="submit">simpan transaksi</button>
+            </form>
+
+            <h3 style="text-align: center; margin-top: 30px;">persentase kategori</h3>
+            <div class="chart">
+                <canvas id="expenseChart"></canvas>
+            </div>
+        </section>
+
+        <section id="history"  class="hidden">
+            <h2>history pengeluaran</h2>
+
+            <div class="search-filter-box">
+                <input type="text" id="search-input" placeholder="cari pengeluaran">
+                <select id="filter-category">
+                    <option value="semua">semua kategori</option>
+                    <option value="makanan">makanan</option>
+                    <option value="transportasi">transportasi</option>
+                    <option value="hiburan">hiburan</option>
+                    <option value="lainnya">lainnya</option>
+                </select>
+            </div>
+
+            <h3>total : Rp <span id="total-amount">0</span></h3>
+
+            <ul id="expense-list"></ul>
+        </section>
+
+        <section id="about" class="hidden">
+            <h2>tentang aplikasi</h2>
+            <p>aplikasi <bold>expense tracker</bold> ini di bangun untuk membantu melacak pengeluaran kamu sendiri supaya gak boros gak beli hal yg gak berguna</p>
+            <h4><strong>note:ini adalah hasil submision project dari dicoding</strong></h4>
+
+            <p><strong>fitur fitur aplikasi ini</strong></p>
+            <ul>
+                <li>Manipulasi DOM Dinamis</li>
+                <li>Web Storage API (localStorage) data persisten</li>
+                <li>Fitur Interaktif (Pencarian & Filter Kategori)</li>
+                <li>Integrasi Grafik Interaktif via Chart.js</li>
+            </ul>
+                <p style="margin-top: 20px; color: #6b7280; font-size: 14px;">dikembangkan secara otodidak</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>web expense tracker <strong>buat test project aja</strong></p>
+    </footer>
+</body>
+</html>
+</body>
+</html>
