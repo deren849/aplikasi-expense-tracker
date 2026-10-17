@@ -106,6 +106,8 @@ function applyTranslations() {
     } else {
         document.title = "Aplikasi Pencatat Pengeluaran";
     }
+
+    renderExpense();
 }
 
 const expenseForm = document.getElementById('expense-form');
@@ -234,7 +236,6 @@ function renderExpense() {
 
     let total = 0;
 
-  
     const filteredExpense = expenses.filter(item => {
         const matchKeyword = item.name.toLowerCase().includes(keyword);
         const matchCategory = selectedCategory === 'semua' || item.category === selectedCategory;
@@ -244,20 +245,31 @@ function renderExpense() {
     filteredExpense.forEach(item => {
         total += item.amount;
 
+        let categoryKey = '';
+        if(item.category === 'makanan') categoryKey = 'opt_food';
+        else if(item.category === 'transportasi') categoryKey = 'opt_transport';
+        else if(item.category === 'hiburan') categoryKey = 'opt_entertain';
+        else if(item.category === 'lainnya') categoryKey = 'opt_other';
+
+        let translatedCategory = translations[currentLanguage][categoryKey] || item.category;
+        
+        let deleteBtnText = currentLanguage === 'en' ? 'Delete' : 'Hapus';
+        let currencySymbol = currentLanguage === 'en' ? 'IDR ' : 'Rp ';
+
         const li = document.createElement('li');
       
         li.innerHTML = `
-       <div class="expense-info">
+            <div class="expense-info">
                 <strong>${item.name}</strong> 
-                <span class="category-badge">${item.category}</span>
-                <p>Rp ${item.amount.toLocaleString('id-ID')}</p>
+                <span class="category-badge">${translatedCategory}</span>
+                <p>${currencySymbol}${item.amount.toLocaleString('id-ID')}</p>
             </div>
             <div class="expense-actions">
-                <button class="btn-edit"  onclick="editExpense(${item.id})">Edit</button>
-                <button class="btn-delete" onclick="deleteExpense(${item.id})">Hapus</button>
+                <button class="btn-edit" onclick="editExpense(${item.id})">Edit</button>
+                <button class="btn-delete" onclick="deleteExpense(${item.id})">${deleteBtnText}</button>
             </div>
-            `;
-            expenseList.appendChild(li);
+        `;
+        expenseList.appendChild(li);
     });
     totalAmountText.innerText = total.toLocaleString('id-ID');
 }

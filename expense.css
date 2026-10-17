@@ -71,6 +71,35 @@ nav a.active, nav a:hover {
     box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
 }
 
+.expense-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.expense-info strong {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+category-badge {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.expense-info p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary-color);
+    white-space: nowrap; 
+}
+
+.expense-actions {
+    display: flex;
+    gap: 10px; 
+    align-items: center;
+}
 
 .container {
     max-width: 600px;
@@ -244,7 +273,7 @@ footer strong {
     }
 
     nav {
-        gap: 10px;
+        gap: 7px;
         padding: 10px 15px;
     }
 
