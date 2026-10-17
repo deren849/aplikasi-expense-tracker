@@ -89,8 +89,8 @@ function editExpense(id){
         document.getElementById('expense-amount').value = target.amount;
         document.getElementById('expense-category').value = target.category;
 
-        const submitBtn = expenseForm.querySelector('.btn-submit');
-        if (submitBtn) submitBtn.innerText = "perbarui pengeluaran";
+        const submitBtn = expenseForm.querySelector('.btn');
+        if (submitBtn) submitBtn.innerText = "perbarui perubahan pengeluaran";
 
         editId = id;
     }
@@ -198,7 +198,7 @@ function initChart() {
                             }
                             if (context.parsed !== null) {
                                 
-                                label += 'Rp ' + context.parsed.toLocaleString('id-ID');
+                                label += 'barang ' + context.parsed.toLocaleString('id-ID');
                             }
                             return label;
                         }
