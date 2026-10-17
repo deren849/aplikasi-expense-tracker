@@ -13,7 +13,7 @@ Aplikasi ini dilengkapi dengan berbagai fitur interaktif dan fungsional:
 * **Web Storage API (`localStorage`):** Data pengeluaran disimpan secara persisten di dalam peramban (*browser*), sehingga data tidak akan hilang meskipun halaman ditutup atau di-*refresh*.
 * **Visualisasi Grafik (Chart.js):** Integrasi dengan grafik lingkaran (*Doughnut Chart*) yang interaktif untuk melihat persentase distribusi pengeluaran berdasarkan kategori secara *real-time*.
 * **Fitur Pencarian & Filter:** Memudahkan pencarian riwayat pengeluaran berdasarkan kata kunci judul atau filter spesifik per kategori (Makanan, Transportasi, Hiburan, Lainnya).
-* **Desain Modern & Responsif:** Antarmuka dengan tema *Dark Mode* yang estetik, memanfaatkan efek modern seperti *radial-gradient* pada latar belakang dan *glassmorphism* (`backdrop-filter`) pada navigasi, serta optimal diakses melalui perangkat *mobile* maupun *desktop*.
+* **Desain Modern & Responsif:** Antarmuka dengan tema *Fluid warna* yang estetik, memanfaatkan efek modern seperti *radial-gradient* pada latar belakang dan *glassmorphism* (`backdrop-filter`) pada navigasi, serta optimal diakses melalui perangkat *mobile* maupun *desktop*.
 
 ---
 
@@ -30,7 +30,7 @@ Aplikasi ini dilengkapi dengan berbagai fitur interaktif dan fungsional:
 
 ```text
 ├── index.html       # Struktur utama halaman web & form input
-├── expense.css      # Desain tampilan antarmuka (Dark Mode & UI)
+├── expense.css      # Desain tampilan antarmuka (Fluid warna & UI)
 ├── tracker.js       # Logika utama aplikasi, Web Storage, & Chart.js
 └── README.md        # Dokumentasi proyek
 ```
@@ -54,7 +54,7 @@ This application is equipped with various interactive and functional features:
 * **Web Storage API (`localStorage`):** Expense data is saved persistently in the browser, ensuring data won't be lost even if the page is closed or refreshed.
 * **Graphic Visualization (Chart.js):** Integration with an interactive Doughnut Chart to view the percentage of expense distribution by category in real-time.
 * **Search & Filter Features:** Makes it easy to search expense history by title keywords or specific category filters (Food, Transport, Entertainment, Other).
-* **Modern & Responsive Design:** An aesthetic Dark Mode interface, utilizing modern effects like radial-gradient backgrounds and glassmorphism (`backdrop-filter`) on the navigation bar, optimized for both mobile and desktop devices.
+* **Modern & Responsive Design:** An aesthetic Fluid color interface, utilizing modern effects like radial-gradient backgrounds and glassmorphism (`backdrop-filter`) on the navigation bar, optimized for both mobile and desktop devices.
 
 ---
 ## Technologies Used
@@ -67,6 +67,6 @@ This application is equipped with various interactive and functional features:
 ## File Structure
 ```text
 ├── index.html       # Main web page structure & input form
-├── expense.css      # Interface design (Dark Mode & UI)
+├── expense.css      # Interface design (Fluid color & UI)
 ├── tracker.js       # Main application logic, Web Storage, & Chart.js
 └── README.md        # Project documentation
