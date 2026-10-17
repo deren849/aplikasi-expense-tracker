@@ -231,7 +231,7 @@ footer strong {
 }
 
 
-
+/*this is for responsive design */
 @media (min-width: 640px) {
     .container{
         margin: 10px  auto;
