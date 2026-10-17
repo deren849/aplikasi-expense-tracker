@@ -2,6 +2,111 @@ let expenses = JSON.parse(localStorage.getItem('expense')) || [];
 let chart = null;
 let editId = null;
 
+const translations = {
+    id: {
+        nav_main: "main",
+        nav_history: "history pengeluaran",
+        nav_about: "tentang",
+        btn_lang: "English",
+        title_add: "tambah pengeluaran",
+        label_name: "tambahkan pengeluaran",
+        place_name: "masukan pengeluaran anda. contoh:nasi goreng...",
+        label_amount: "jumlah (RP)",
+        place_amount: "masukan nominalnya kayak gini: 12000",
+        label_category: "kategori",
+        opt_food: "makanan",
+        opt_entertain: "hiburan",
+        opt_transport: "transportasi",
+        opt_other: "lainnya",
+        btn_submit: "simpan transaksi",
+        title_chart: "persentase kategori",
+        title_history: "history pengeluaran",
+        place_search: "cari pengeluaran",
+        opt_all: "semua kategori",
+        title_total: "total : Rp ",
+        title_about: "tentang aplikasi",
+        desc_about: "aplikasi <bold>expense tracker</bold> ini di bangun untuk membantu melacak pengeluaran kamu sendiri supaya gak boros gak beli hal yg gak berguna",
+        feat_title: "fitur fitur aplikasi ini",
+        feat_1: "Manipulasi DOM Dinamis",
+        feat_2: "Web Storage API (localStorage) data persisten",
+        feat_3: "Fitur Interaktif (Pencarian & Filter Kategori)",
+        feat_4: "Integrasi Grafik Interaktif via Chart.js",
+        dev_note: "dikembangkan secara otodidak",
+        footer_text: "All Rights Reserved.",
+        desc_about: "aplikasi <strong>expense tracker</strong> ini di bangun untuk membantu melacak pengeluaran kamu sendiri supaya gak boros gak beli hal yg gak berguna",
+    },
+    en: {
+        nav_main: "Main",
+        nav_history: "Expense History",
+        nav_about: "About",
+        btn_lang: "Indonesia",
+        title_add: "Add Expense",
+        label_name: "Expense Name",
+        place_name: "Enter your expense. e.g: fried rice...",
+        label_amount: "Amount (IDR)",
+        place_amount: "Enter amount like this: 12000",
+        label_category: "Category",
+        opt_food: "Food",
+        opt_entertain: "Entertainment",
+        opt_transport: "Transport",
+        opt_other: "Other",
+        btn_submit: "Save Transaction",
+        title_chart: "Category Percentage",
+        title_history: "Expense History",
+        place_search: "Search expenses",
+        opt_all: "All Categories",
+        title_total: "Total : IDR ",
+        title_about: "About Application",
+        desc_about: "This <bold>expense tracker</bold> app is built to help track your expenses so you don't overspend on useless things.",
+        feat_title: "Features of this app",
+        feat_1: "Dynamic DOM Manipulation",
+        feat_2: "Web Storage API (localStorage) for persistent data",
+        feat_3: "Interactive Features (Search & Category Filter)",
+        feat_4: "Interactive Chart Integration via Chart.js",
+        dev_note: "Developed autodidactically",
+        footer_text: "All Rights Reserved.",
+        desc_about: "This <strong>expense tracker</strong> app is built to help track your expenses so you don't overspend on useless things.",
+    }
+
+};
+
+let currentLanguage = localStorage.getItem('language') || 'id';
+
+function toggleLanguage() {
+    currentLanguage = currentLanguage === 'id' ? 'en' : 'id';
+    localStorage.setItem('language', currentLanguage);
+    applyTranslations();
+}
+
+function applyTranslations() {
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+
+       if (translations[currentLanguage][key]) { 
+        if (element.tagName === 'INPUT') {
+            element.placeholder = translations[currentLanguage][key];
+        } else {
+            element.innerHTML = translations[currentLanguage][key];
+        }
+       }
+    });
+
+    if (chart) {
+        chart.data.labels = [
+            translations[currentLanguage].opt_food,
+            translations[currentLanguage].opt_transport,
+            translations[currentLanguage].opt_entertain,
+            translations[currentLanguage].opt_other
+        ];
+        chart.update();
+    }
+
+    if (currentLanguage === 'en') {
+        document.title = "Expense Tracker";
+    } else {
+        document.title = "Aplikasi Pencatat Pengeluaran";
+    }
+}
 
 const expenseForm = document.getElementById('expense-form');
 const expenseList = document.getElementById('expense-list');
@@ -33,13 +138,13 @@ expenseForm.addEventListener('submit', function(ev) {
     const amount = parseInt(document.getElementById('expense-amount').value);
     const category = document.getElementById('expense-category').value;
 
-    if (!name.trim()) {
-        alert("perlu di isi");
+   if (!name.trim()) {
+        alert(currentLanguage === 'en' ? "Field must be filled" : "Perlu di isi");
         return;
     }
     
     if (isNaN(amount) || amount < 1) {
-        alert=("harus lebih dari 0");
+        alert(currentLanguage === 'en' ? "Must be greater than 0" : "Harus lebih dari 0");
         return;
     }
 
@@ -198,7 +303,8 @@ function initChart() {
                             }
                             if (context.parsed !== null) {
                                 
-                                label += 'barang ' + context.parsed.toLocaleString('id-ID');
+                                let itemText = currentLanguage === 'en' ? 'item ' : 'barang ';
+                                label += itemText + context.parsed.toLocaleString('id-ID');
                             }
                             return label;
                         }
@@ -233,6 +339,7 @@ function updateChartData() {
 
 window.onload = function() {
     initChart();
+    applyTranslations();
 };
 
 console.log("test console");
