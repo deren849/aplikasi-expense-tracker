@@ -141,12 +141,10 @@ expenseForm.addEventListener('submit', function(ev) {
     const category = document.getElementById('expense-category').value;
 
    if (!name.trim()) {
-        alert(currentLanguage === 'en' ? "Field must be filled" : "Perlu di isi");
         return;
     }
     
     if (isNaN(amount) || amount < 1) {
-        alert(currentLanguage === 'en' ? "Must be greater than 0" : "Harus lebih dari 0");
         return;
     }
 
@@ -160,8 +158,7 @@ expenseForm.addEventListener('submit', function(ev) {
             expenses[index].category = category;
         }
         editId = null;
-        if (submitBtn) submitBtn.innerText = "tambah pengeluaran";
-        alert("pengeluaran berhasil di perbarui");
+        if (submitBtn) submitBtn.innerText = translations[currentLanguage].btn_submit;
 
 
     } else {
@@ -175,7 +172,6 @@ expenseForm.addEventListener('submit', function(ev) {
     
     
     expenses.push(newExpense);
-    alert('data pengeluaran berhasil diperbarui');
     }
     
     saveToStorage();
@@ -197,7 +193,9 @@ function editExpense(id){
         document.getElementById('expense-category').value = target.category;
 
         const submitBtn = expenseForm.querySelector('.btn');
-        if (submitBtn) submitBtn.innerText = "perbarui perubahan pengeluaran";
+        if (submitBtn) {
+            submitBtn.innerText = currentLanguage === 'en' ? 'Update Expense' : 'perbarui pengeluaran';
+        }
 
         editId = id;
     }
